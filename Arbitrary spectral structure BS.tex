@@ -1,4 +1,4 @@
-\documentclass[aps,prl,twocolumn,amsmath,amssymb,nofootinbib,superscriptaddress]{revtex4}
+\documentclass[aps,pra,twocolumn,amsmath,amssymb,nofootinbib,superscriptaddress]{revtex4}
 
 \newcommand{\bra}[1]{\langle#1|}
 \newcommand{\ket}[1]{|#1\rangle}
@@ -45,7 +45,9 @@ Boson-sampling has attracted much interest as a simplified approach to implement
 % Introduction
 %
 
-\emph{Introduction} --- Linear optics interferometry has widespread uses in optical quantum computing \cite{bib:KLM01, bib:KokLovett11, bib:NielsenChuang00}, quantum metrology, and quantum cryptography. In particular, passive linear optics interferometry is the basis of the recent field of boson-sampling \cite{bib:AaronsonArkhipov10}, where a series of single photons are evolved via linear optics and subsequently sampled using coincidence photo-detection, a problem which has been shown to be classically intractable.
+\section{Introduction}
+
+Linear optics interferometry has widespread uses in optical quantum computing \cite{bib:KLM01, bib:KokLovett11, bib:NielsenChuang00}, quantum metrology, and quantum cryptography. In particular, passive linear optics interferometry is the basis of the recent field of boson-sampling \cite{bib:AaronsonArkhipov10}, where a series of single photons are evolved via linear optics and subsequently sampled using coincidence photo-detection, a problem which has been shown to be classically intractable.
 
 Such interferometry typically requires indistinguishable photonic states, such that generalized Hong-Ou-Mandel (HOM) \cite{bib:HOM87, bib:RohdeRalph05} interference takes place. In boson-sampling, it was found that the amplitudes in the system are related to matrix permanents. On the other hand, de Guise \emph{et al.} \cite{bib:SandersImm} and Tillmann \emph{et al.} \cite{bib:TillmannImm14} showed that linear optics networks with time delays relates to matrix immanents.
 
@@ -55,7 +57,9 @@ Here we generalize the boson-sampling model to the situation where the photons h
 % Boson-sampling
 %
 
-\emph{Boson-sampling} --- In the boson-sampling model, we begin by preparing $n$ single photons in $m$ modes,
+\section{Boson-sampling}
+
+In the boson-sampling model, we begin by preparing $n$ single photons in $m$ modes,
 \begin{equation}
 \ket{\psi_\mathrm{in}} = \hat{a}^\dag_1 \dots \hat{a}^\dag_n \ket{0_1,\dots,0_m},
 \end{equation}
@@ -81,7 +85,9 @@ The number of modes in a boson-sampling device scales as \mbox{$m=O(n^2)$}. Thus
 % Spectral structure of photons
 %
 
-\emph{Spectral structure of photons} --- Photons exhibit rich spectral structure, and a representation in terms of \mbox{$\hat{a}^\dag$} does not characterize this. Instead we will adopt the mode operator formalism \cite{bib:RohdeMauererSilberhorn07}, whereby photons are represented by mode operators of the form,
+\section{Spectral structure of photons}
+
+Photons exhibit rich spectral structure, and a representation in terms of \mbox{$\hat{a}^\dag$} does not characterize this. Instead we will adopt the mode operator formalism \cite{bib:RohdeMauererSilberhorn07}, whereby photons are represented by mode operators of the form,
 \begin{equation}
 \hat{A}_{\psi,j}^\dag = \int \psi(\omega) \hat{a}_j^\dag(\omega)\, \mathrm{d}\omega,
 \end{equation}
@@ -108,7 +114,15 @@ It follows that the mode operators can be expressed as a decomposition into a ba
 \end{eqnarray}
 where \mbox{$\hat{A}_{\psi,j}^\dag$} creates a photon with spectral distribution function $\psi$ in the $j$th mode.
 
-\emph{Boson-sampling with arbitrary spectral states} --- Let the input state to the interferometer be a tensor product of $n$ photons, each characterized by distinct spectral distribution functions,
+%
+% Boson-sampling with arbitrary spectral states
+%
+
+\section{Boson-sampling with arbitrary spectral states}
+
+\subsection{Spectrally pure photons}
+
+Let the input state to the interferometer be a tensor product of $n$ photons, each characterized by distinct spectral distribution functions,
 \begin{eqnarray}
 \ket{\psi_\mathrm{in}} &=& \prod_{j=1}^n \hat{A}_{\psi_j,j}^\dag \ket{0} \nonumber \\
 &=& \prod_{j=1}^n \sum_i \lambda_{i,j} \hat{A}_{\xi_i,j}^\dag \ket{0},
@@ -121,40 +135,52 @@ where $V$ is the set of all vectors of length $n$ with integer indices spanning 
 
 Then,
 \begin{equation}
-\ket{\psi_\mathrm{in}} = \sum_{v\in V} \chi(v) \prod_{i=1}^N \prod_{j\in T(v,i)} \hat{A}_{\xi_i,j}^\dag \ket{0},
+\ket{\psi_\mathrm{in}} = \sum_{v\in V} \chi_{\vec\psi}(v) \prod_{i=1}^N \prod_{j\in T(v,i)} \hat{A}_{\xi_i,j}^\dag \ket{0},
 \end{equation}
 where,
 \begin{equation}
-\chi(v) = \prod_{j=1}^n \lambda_{v_j,j},
+\chi_{\vec\psi}(v) = \prod_{j=1}^n \lambda_{v_j,j},
 \end{equation}
-and \mbox{$T(v,i)$} is the set of spatial modes for spectral configuration $v$ where the elements of $v$ are $i$.
+and \mbox{$T(v,i)$} is the set of spatial modes for spectral configuration $v$ where the elements of $v$ are $i$. Here \mbox{$\vec\psi=\{\psi_1,\dots,\psi_n\}$} denotes the set of spectral distribution functions of each of the input photons.
 
 Next we apply the linear optics evolution, which transforms the input state to,
 \begin{equation}
-\ket{\psi_\mathrm{out}} = \sum_{v\in V} \Bigg(\chi(v) \prod_{i=1}^N \underbrace{\prod_{j\in T(v,i)} \hat{U} \hat{A}_{\xi_i,j}^\dag \hat{U}^\dag}_{|T(v,i)|\,\mathrm{indist.\,photons}} \Bigg) \ket{0}.
+\ket{\psi_\mathrm{out}} = \sum_{v\in V} \Bigg(\chi_{\vec\psi}(v) \prod_{i=1}^N \underbrace{\prod_{j\in T(v,i)} \hat{U} \hat{A}_{\xi_i,j}^\dag \hat{U}^\dag}_{|T(v,i)|\,\mathrm{indist.\,photons}} \Bigg) \ket{0}.
 \end{equation}
 The underbraced component of the equation represents a set of $k=|T(v,i)|$ indistinguishable photons in spectral mode $\xi_i$, and evolves using the standard permanent rule for indistinguishable photons,
 \begin{equation} \label{eq:generalOut}
-\ket{\psi_\mathrm{out}} = \sum_{v\in V} \chi(v) \prod_{i=1}^N \sum_S \mathrm{Per}\left(U_{S,T(v,i)}\right) \prod_{j=1}^m \left(\hat{A}^\dag_{\xi_i,j}\right)^{S_j} \ket{0},
+\ket{\psi_\mathrm{out}} = \sum_{v\in V} \chi_{\vec\psi}(v) \prod_{i=1}^N \sum_S \mathrm{Per}\left(U_{S,T(v,i)}\right) \prod_{j=1}^m \left(\hat{A}^\dag_{\xi_i,j}\right)^{S_j} \ket{0},
 \end{equation}
 where $S$ is the set of all allowed output configurations of $k$ photons, as before. Here \mbox{$U_{S,T(v,i)}$} is a \mbox{$k\times k$} sub-matrix of $U$, obtained using the usual linear optics permanent rule.
 
-\emph{General case} --- Let us first assume that our photodetectors are able to distinguish the different spectral basis functions. Let $S^{(i)}$ be the configuration associated with the $i$th spectral mode. If the detector can project uniquely onto spectral mode $\xi_i$ then the associated amplitude is,
+%
+% Spectrally resolved detectors
+%
+
+\subsection{Spectrally-resolved detectors}
+
+Let us first assume that our photodetectors are able to distinguish the different spectral basis functions. Let $S^{(i)}$ be the configuration associated with the $i$th spectral mode. If the detector can project uniquely onto spectral mode $\xi_i$ then the associated amplitude is,
 \begin{equation}
-\gamma(S^{(i)}) = \sum_{v\in V} \chi(v) \mathrm{Per}\left(U_{S^{(i)},T(v,i)}\right).
+\gamma_{\vec\psi}(S^{(i)}) = \sum_{v\in V} \chi_{\vec\psi}(v) \mathrm{Per}\left(U_{S^{(i)},T(v,i)}\right).
 \end{equation}
 Let \mbox{$\vec{S}=\{S^{(1)},\dots,S^{(N)}\}$} denote the configuration across all spectral modes, where again $S^{(i)}$ is the configuration associated with the $i$th spectral mode. Then the associated amplitude is,
-\begin{equation}
-\gamma(\vec{S}) = \sum_{v\in V} \chi(v) \prod_{i=1}^N \mathrm{Per}\left(U_{S^{(i)},T(v,i)}\right),
+\begin{equation} \label{eq:general_gamma}
+\gamma_{\vec\psi}(\vec{S}) = \sum_{v\in V} \chi_{\vec\psi}(v) \prod_{i=1}^N \mathrm{Per}\left(U_{S^{(i)},T(v,i)}\right),
 \end{equation}
-and the respective measurement probability is \mbox{$P(\vec{S})=|\gamma(\vec{S})|^2$}.
+and the respective measurement probability is \mbox{$P_{\vec\psi}(\vec{S})=|\gamma_{\vec\psi}(\vec{S})|^2$}.
+
+%
+% Non-spectrally-resolved detectors
+%
+
+\subsection{Non-spectrally-resolved detectors}
 
 In reality, photodetectors are typically unable to resolve an orthonormal basis of spectral functions, with exception to time-resolved photodetection where the response of the detector is much shorter than the length of the wavepacket, or detectors with narrowband frequency filtering. Next we will consider the situation where non-resolving detectors are employed. That is, the detectors can tell us how many photons arrived, but nothing about their spectral structure.
 
 Let $M$ be a measurement signature, which is a configuration outcome, irrespective of the spectral modes in which the photons were measured. They satisfy the constraint $\sum_i S^{(i)} = M$. Then the probability of that measurement signature is given by summing over all partitions of the measurement signature into signatures within individual spectral modes,
 \begin{eqnarray} \label{eq:generalPM}
 P(M) &=& \sum_{\vec{S}\,\,\mathrm{s.t.}\,\sum_i S^{(i)} = M} P(\vec{S}) \nonumber \\
-&=& \underbrace{\sum_{\vec{S}}}_{\mathrm{classical}} \Bigg| \underbrace{\sum_{v\in V} \chi(v) \prod_{i=1}^N \mathrm{Per}\left(U_{S^{(i)},T(v,i)}\right)}_{\mathrm{quantum}}\Bigg|^2,\nonumber \\
+&=& \underbrace{\sum_{\vec{S}}}_{\mathrm{classical}} \Bigg| \underbrace{\sum_{v\in V} \chi_{\vec\psi}(v) \prod_{i=1}^N \mathrm{Per}\left(U_{S^{(i)},T(v,i)}\right)}_{\mathrm{quantum}}\Bigg|^2,\nonumber \\
 \end{eqnarray}
 where we sum over all signatures $S$ associated with each spectral mode, such that the sum of the signatures is the measurement result $M$. Eq.~\ref{eq:generalPM} is structurally similar to a permanent of permanents. The first permanent-like function (the sum over $\vec{S}$), labeled `classical', is of positive real-valued elements. This term sums the classically distinct elements -- the different spectral basis functions that the detector is unable to resolve. The second component, labeled `quantum', contains the permanent associated with the sampling of each individual spectral component. The permanent within this product are in general complex valued. Evaluating the former is computationally easy \cite{bib:SinclairPerm}, whereas the latter is computationally hard. 
 
@@ -162,7 +188,9 @@ where we sum over all signatures $S$ associated with each spectral mode, such th
 % Limiting cases
 %
 
-\emph{Limiting cases} --- The $\lambda$ matrix characterizes the spectral decomposition across all modes. Two limiting cases are of particular interest. When all of the photons are indistinguishable, they all reside in the same spectral mode, and,
+\subsection{Limiting cases}
+
+The $\lambda$ matrix characterizes the spectral decomposition across all modes. Two limiting cases are of particular interest. When all of the photons are indistinguishable, they all reside in the same spectral mode, and,
 \begin{equation}
 \lambda =
 \left[ \begin{array}{cccc}
@@ -216,7 +244,9 @@ In the intermediate regime we will be evaluating a combinatoric expression over 
 % Hong-Ou-Mandel interference
 %
 
-\emph{Hong-Ou-Mandel interference} --- The simplest example to consider is HOM interference, of two photons at a 50/50 beamsplitter, given by the Hadamard matrix,
+\subsection{Hong-Ou-Mandel interference}
+
+The simplest example to consider is HOM interference, of two photons at a 50/50 beamsplitter, given by the Hadamard matrix,
 \begin{equation}
 U = \frac{1}{\sqrt{2}} \left[ \begin{array}{cc}
 1 & 1 \\
@@ -249,17 +279,44 @@ P(M) &=& P(\{1,0\},\{0,1\}) \nonumber \\
 which is the expected result for HOM interference when photons are mismatched and there is no filtering. Specifically, when the photons are indistinguishable, \mbox{$\alpha=1$}, \mbox{$P(M)=0$} and we never observe coincidence events. Whereas for distinguishable photons, \mbox{$\alpha=0$}, \mbox{$P(M)=1/2$} and the photons behave as classical particles.
 
 %
+% Spectrally mixed photons
+%
+
+\subsection{Spectrally mixed photons}
+
+Thus far, we have considered boson-sampling where each input photon has distinct spectral structure, but all photons are assumed to be spectrally pure. In many real-world experiments, photons are often spectrally mixed. For example, if photons are prepared via heralded spontaneous parametric down-conversion, then spectral correlations between the signal and idler photons may yield mixing in the spectral degree of freedom, depending on the spectral characteristics of the heralding photodetector.
+
+Let each input photon be an arbitrary mixture of $q$ different spectral states,
+\begin{equation}
+\hat\rho_\mathrm{in} = \bigotimes_{i=1}^n \hat\rho_i,
+\end{equation}
+where,
+\begin{equation}
+\hat\rho_i = \sum_{j=1}^q p_{i,j} \hat{A}_{\psi_{i,j}}^\dag \ket{0}\bra{0} \hat{A}_{\psi_{i,j}},
+\end{equation}
+where
+\mbox{$\psi_{i,j}$} is the spectral distribution function of the $j$th term in the mixture of the $i$th photon.
+
+The probability that for the whole $n$-photon state, that the $i$th photon is in the $j_i$th spectral states is given by, \mbox{$\prod_{i=1}^n p_{i,j_i}$}, and the respective sampling probability follows from Eq.~\ref{eq:general_gamma} as \mbox{$P_{\vec\psi}(\vec{S}) \prod_{i=1}^n p_{i,j_i}$} where \mbox{$\vec\psi = \{\psi_{j_1},\dots,\psi_{j_n}\}$}. Now the total probability of measuring a given output configuration is given by summing this expression over all combinations of components in the input mixture,
+\begin{equation}
+P(\vec{S}) = \sum_{j_1,\dots,j_n=1}^q P_{\vec\psi}(\vec{S}) \prod_{i=1}^n p_{i,j_i},
+\end{equation}
+which requires summing over $q^n$ amplitudes.
+
+%
 % Conclusion
 %
 
-\emph{Conclusion} --- We have generalized the boson-sampling model to photons of arbitrary spectral structure. We found that while in ordinary boson-sampling with indistinguishable photons each amplitude is related to a matrix permanent, in general the amplitudes are linear combinations of products of functions of permanents. Our result reduces to the usual boson-sampling permanent result when photons are indistinguishable, and also verifies that with distinguishable photons boson-sampling is computationally easy, an expected outcome. In the intermediate regime, our results demonstrate the relationship between photonic states and functions of permanents, which sheds light on the question of their computational complexity. Our results apply for general detector models, whereby the detectors are either spectrally-resolving or blind to the spectral sturcture of photons. We demonstrated that in both detector regimes, our model reproduces expected Hong-Ou-Mandel two-photon interference effects.
+\section{Conclusion}
+
+We have generalized the boson-sampling model to photons of arbitrary spectral structure. We found that while in ordinary boson-sampling with indistinguishable photons each amplitude is related to a matrix permanent, in general the amplitudes are linear combinations of products of functions of permanents. Our result reduces to the usual boson-sampling permanent result when photons are indistinguishable, and also verifies that with distinguishable photons boson-sampling is computationally easy, an expected outcome. In the intermediate regime, our results demonstrate the relationship between photonic states and functions of permanents, which sheds light on the question of their computational complexity. Our results apply for general detector models, whereby the detectors are either spectrally-resolving or blind to the spectral sturcture of photons. We demonstrated that in both detector regimes, our model reproduces expected Hong-Ou-Mandel two-photon interference effects.
 
 %
 % Acknowledgments
 %
 
 \begin{acknowledgments}
-\emph{Acknowledgments} - This research was conducted by the Australian Research Council Centre of Excellence for Engineered Quantum Systems (Project number CE110001013).
+This research was conducted by the Australian Research Council Centre of Excellence for Engineered Quantum Systems (Project number CE110001013).
 \end{acknowledgments}
 
 %
